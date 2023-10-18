@@ -1,34 +1,35 @@
-# Pounds to kg
-def poundsToKg():
-    while True:
-        try:
-            toConvert = float(input("Enter your weight in pounds: "))
-            break
-        except ValueError:
-            print("Input not accepted. Please only put digits!")
-    print(f"Your weight in kg is {round(toConvert * float(0.454))}")
+class Calculator:
+    def __init__(self):
+        self.selection = None
+        self.toConvert = None
 
-def kgToPounds():
-    while True:
-        try:
-            toConvert = float(input("Enter your weight in kg: "))
-            break
-        except ValueError:
-            print("Input not accepted. Please only put digits!")
-    print(f"Your weight in pounds is {(round(toConvert * float(2.205)))}")
+    def poundsToKg(self, toConvert: float) -> None:
+        print(f"Your weight in kg is {round(toConvert * float(0.454))}")
+
+    def kgToPounds(self, toConvert: float) -> None:
+        print(f"Your weight in pounds is {(round(toConvert * float(2.205)))}")
+
+    def selectConversion(self):
+        print("Calculator:")
+        print("1. Pounds to kg")
+        print("2. Kg to pounds")
+        self.selection = input("Please select a number: ")
+
+    def convert(self):
+        while True:
+            try:
+                if(self.selection == str(1)):
+                    self.toConvert = float(input("Enter your weight in pounds: "))
+                    self.poundsToKg(self.toConvert)
+                    break
+                elif(self.selection == str(2)):
+                    self.toConvert = float(input("Enter your weight in kg: "))
+                    self.kgToPounds(self.toConvert)
+                    break
+            except ValueError:
+                print("Not a valid input! Please select an option by inputting the digit.")
 
 if __name__ == "__main__":
-    print("Calculator:")
-    print("1. Pounds to kg")
-    print("2. Kg to pounds")
-    selection = input("Please select a number: ")
-    while True:
-        try:
-            if(selection == str(1)):
-                poundsToKg()
-                break
-            elif(selection == str(2)):
-                kgToPounds()
-                break
-        except ValueError:
-            print("Not a valid input! Please select an option by inputting the digit.")
+    calculator = Calculator()
+    calculator.selectConversion()
+    calculator.convert()
